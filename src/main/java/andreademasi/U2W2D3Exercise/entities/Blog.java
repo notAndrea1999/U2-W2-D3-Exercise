@@ -4,11 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "blog_posts")
 @NoArgsConstructor
@@ -34,5 +32,23 @@ public class Blog {
         this.contenuto = contenuto;
         this.readingTime = readingTime;
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Blog{" +
+                "id=" + id +
+                ", category='" + category + '\'' +
+                ", title='" + title + '\'' +
+                ", cover='" + cover + '\'' +
+                ", contenuto='" + contenuto + '\'' +
+                ", readingTime=" + readingTime +
+                ", user=" + user.getId()
+                + user.getName()
+                + user.getSurname()
+                + user.getEmail()
+                + user.getBirthDate()
+                + user.getAvatar() +
+                '}';
     }
 }

@@ -3,16 +3,14 @@ package andreademasi.U2W2D3Exercise.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.Set;
 
 @Getter
 @Setter
-@ToString
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -27,9 +25,20 @@ public class User {
     @Column(name = "avatar_url")
     private String avatar;
 
-    @OneToMany(mappedBy = "user")
-    private Set<Blog> blogs;
-    
+
     @CreationTimestamp
     private Date createdAt;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", birthDate=" + birthDate +
+                ", avatar='" + avatar + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }
