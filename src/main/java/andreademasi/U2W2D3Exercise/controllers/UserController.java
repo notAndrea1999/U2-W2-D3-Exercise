@@ -4,10 +4,9 @@ package andreademasi.U2W2D3Exercise.controllers;
 import andreademasi.U2W2D3Exercise.entities.User;
 import andreademasi.U2W2D3Exercise.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/authors")
@@ -17,8 +16,8 @@ public class UserController {
 
     //GET authors
     @GetMapping
-    List<User> getAllAuthors() {
-        return userService.getAllAuthors();
+    Page<User> getAllAuthors(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "2") int size) {
+        return userService.getAllAuthors(page, size);
     }
 
     //POST crea un nuovo autore

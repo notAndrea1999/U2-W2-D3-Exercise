@@ -4,10 +4,9 @@ package andreademasi.U2W2D3Exercise.controllers;
 import andreademasi.U2W2D3Exercise.entities.Blog;
 import andreademasi.U2W2D3Exercise.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/blogPosts")
@@ -17,8 +16,8 @@ public class BlogController {
 
     //GET blogpost
     @GetMapping
-    List<Blog> getAllBlogs() {
-        return blogService.getAllBlogs();
+    Page<Blog> getAllBlogs(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "2") int size) {
+        return blogService.getAllBlogs(page, size);
     }
 
     //POST crea un nuovo blogpost

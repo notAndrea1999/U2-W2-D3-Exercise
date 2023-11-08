@@ -6,9 +6,10 @@ import andreademasi.U2W2D3Exercise.exceptions.BadRequestException;
 import andreademasi.U2W2D3Exercise.exceptions.NotFoundException;
 import andreademasi.U2W2D3Exercise.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserService {
@@ -18,8 +19,9 @@ public class UserService {
 
 
     //GET authors
-    public List<User> getAllAuthors() {
-        return userRepo.findAll();
+    public Page<User> getAllAuthors(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return userRepo.findAll(pageable);
     }
 
 
